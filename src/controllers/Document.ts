@@ -67,7 +67,32 @@ export async function getDocument(req: Request, res: Response) {
 
       return res.status(201).json(document);
     }
-	return res.status(404).json({error: "Document not found!"})
+    return res.status(404).json({ error: "Document not found!" });
+  } catch (err) {
+    return res
+      .status(err.status || 500)
+      .json({ error: err.message || "Algo deu errado" });
+  }
+}
+
+export async function deleteDocument(req: Request, res: Response) {
+  const { documentId } = req.params;
+  try {
+    validateId(documentId);
+
+    const id = await knex("documents")
+      .first("*")
+      .where("id", documentId)
+      .andWhere("deletedAt", null);
+    if (id) {
+      await knex("documents")
+        .update("deletedAt", new Date())
+        .where("id", documentId);
+
+      return res.status(200).json({ message: "Deleted document!" });
+    }
+
+    return res.status(404).json({ error: "Document not found!" });
   } catch (err) {
     return res
       .status(err.status || 500)
