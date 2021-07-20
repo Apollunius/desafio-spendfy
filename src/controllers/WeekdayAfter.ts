@@ -20,6 +20,6 @@ export function getWeekday(req: Request, res: Response) {
   } catch (err) {
     return res
       .status(err.status || 500)
-      .json({ error: err.message || "Algo deu errado" });
+      .json({ error: err.message || "Something is wrong" });
   }
 }

@@ -18,7 +18,7 @@ export async function createDocument(req: Request, res: Response) {
     if (!checkName) {
       const buff = Buffer.from(content);
       const base64data = buff.toString("base64");
-      const kbSize = buff.byteLength / 1000; // transformando o de byte para kbyte
+      const kbSize = buff.byteLength / 1024; // transformando o de byte para kbyte
 
       const document = await knex("documents")
         .insert({ kbSize, name, content: base64data })
@@ -31,7 +31,7 @@ export async function createDocument(req: Request, res: Response) {
   } catch (err) {
     return res
       .status(err.status || 500)
-      .json({ error: err.message || "Algo deu errado" });
+      .json({ error: err.message || "Something is wrong" });
   }
 }
 
@@ -46,7 +46,7 @@ export async function getDocuments(_: Request, res: Response) {
   } catch (err) {
     return res
       .status(err.status || 500)
-      .json({ error: err.message || "Algo deu errado" });
+      .json({ error: err.message || "Something is wrong" });
   }
 }
 
@@ -75,7 +75,7 @@ export async function getDocument(req: Request, res: Response) {
   } catch (err) {
     return res
       .status(err.status || 500)
-      .json({ error: err.message || "Algo deu errado" });
+      .json({ error: err.message || "Something is wrong" });
   }
 }
 
@@ -102,6 +102,6 @@ export async function deleteDocument(req: Request, res: Response) {
   } catch (err) {
     return res
       .status(err.status || 500)
-      .json({ error: err.message || "Algo deu errado" });
+      .json({ error: err.message || "Something is wrong" });
   }
 }
