@@ -7,7 +7,7 @@ import {
   getDocument,
   getDocuments,
 } from "./controllers/Document";
-import { getWeekday } from "./controllers/WeekAfter";
+import { getWeekday } from "./controllers/WeekdayAfter";
 
 const routes = Router();
 
