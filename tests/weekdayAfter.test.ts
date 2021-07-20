@@ -2,7 +2,7 @@ import supertest from "supertest";
 
 import app from "../src";
 
-describe("Week-After", () => {
+describe("Weekday-After", () => {
   const request = supertest(app);
 
   test("should returns 'domingo' when sending startDay = 'segunda' and amountOfDays = 6", async () => {

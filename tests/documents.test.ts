@@ -1,3 +1,5 @@
+import { randomBytes } from "crypto";
+
 import supertest from "supertest";
 
 import app from "../src";
@@ -7,7 +9,7 @@ describe("Documents", () => {
 
   test("should create a new document on database", async () => {
     const object = {
-      name: "testess",
+      name: randomBytes(8).toString("hex"),
       content: "conteúdo",
     };
     const response = await request.post("/documents").send(object);
@@ -38,7 +40,7 @@ describe("Documents", () => {
 
   test("should returns error when try create a document with existent name", async () => {
     const object = {
-      name: "teste404",
+      name: randomBytes(8).toString("hex"),
       content: "conteúdo",
     };
 
@@ -52,11 +54,11 @@ describe("Documents", () => {
 
   test("should return all documents", async () => {
     const object = {
-      name: "teste44",
+      name: randomBytes(8).toString("hex"),
       content: "conteúdo",
     };
     const object2 = {
-      name: "teste45",
+      name: randomBytes(8).toString("hex"),
       content: "conteúdo",
     };
 
@@ -84,7 +86,7 @@ describe("Documents", () => {
 
   test("should returns the document by correct id", async () => {
     const object = {
-      name: "teste40",
+      name: randomBytes(8).toString("hex"),
       content: "conteúdo",
     };
     const documentResponse = await request.post("/documents").send(object);
@@ -94,7 +96,7 @@ describe("Documents", () => {
 
     expect(response.status).toBe(200);
     expect(response.body.id).toBe(documentResponse.body[0].id);
-    expect(response.body.name).toBe("teste40");
+    expect(response.body.name).toBe(object.name);
   });
 
   test("should returns error when try delete a document with invalid id", async () => {
@@ -106,7 +108,7 @@ describe("Documents", () => {
 
   test("should returns delete a document", async () => {
     const object = {
-      name: "teste55",
+      name: randomBytes(8).toString("hex"),
       content: "conteúdo",
     };
     const documentResponse = await request.post("/documents").send(object);
