@@ -4,7 +4,7 @@
 	"description": "desafio",
 	"main": "index.js",
 	"scripts": {
-		"dev": "ts-node-dev --transpile-only --ignore-watch node_modules src/index.ts",
+		"dev": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts",
 		"start": "node dist/index.js",
 		"migration:create": "knex --knexfile knexfile.ts migrate:make",
 		"migration:revert": "knex --knexfile knexfile.ts migrate:rollback",
