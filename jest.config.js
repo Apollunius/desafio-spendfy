@@ -8,14 +8,15 @@ module.exports = {
     "/src/helpers",
     "/src/migrations/",
     "/tests/",
+    "/src/utils",
   ],
   coverageReporters: ["lcov", "text"],
   coverageThreshold: {
     global: {
       branches: 60,
-      functions: 70,
-      lines: 70,
-      statements: 70,
+      functions: 60,
+      lines: 60,
+      statements: 60,
     },
   },
   globals: {
