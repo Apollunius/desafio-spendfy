@@ -15,3 +15,5 @@ app.use(routes);
 const port = process.env.PORT ?? 9999;
 
 app.listen(port, () => console.log(`Running on http://localhost:${port}`));
+
+export default app;
